@@ -5,8 +5,8 @@ services:
     ports:
       - 5010:80
     volumes:
-      - davetech_in_conf.ini:/usr/local/etc/php/conf.d/conf.ini
-      - davetech_in_html:/var/www/html # Full wordpress project
+      - conf.ini:/usr/local/etc/php/conf.d/conf.ini
+      - html:/var/www/html # Full wordpress project
     environment:
       WORDPRESS_DB_HOST: wp-db:3306
       WORDPRESS_DB_NAME: "${DB_NAME}"
@@ -17,7 +17,7 @@ services:
   wp-db:
     image: mysql:latest
     volumes:
-      - davetech_in_mysql_data:/var/lib/mysql
+      - mysql_data:/var/lib/mysql
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
@@ -29,8 +29,8 @@ services:
     ports:
       - 5011:80
     volumes:
-      - davetech_in_pma_php.ini:/usr/local/etc/php/conf.d/conf.ini
-      - davetech_in_pma_config.php:/etc/phpmyadmin/config.user.inc.php
+      - pma_php.ini:/usr/local/etc/php/conf.d/conf.ini
+      - pma_config.php:/etc/phpmyadmin/config.user.inc.php
     restart: unless-stopped
     environment:
       # https://docs.phpmyadmin.net/en/latest/setup.html#docker-environment-variables
@@ -44,7 +44,7 @@ services:
     container_name: wp-db-backup
     image: tiredofit/db-backup
     volumes:
-      - davetech_in_backups:/backup
+      - backups:/backup
     restart: unless-stopped
     environment:
       DB_TYPE: mysql
@@ -61,9 +61,9 @@ services:
     depends_on:
       - wp-db
 volumes:
-  davetech_in_conf.ini:
-  davetech_in_html:
-  davetech_in_mysql_data:
-  davetech_in_pma_php.ini:
-  davetech_in_pma_config.php:
-  davetech_in_backups:
+  conf.ini:
+  html:
+  mysql_data:
+  pma_php.ini:
+  pma_config.php:
+  backups:
