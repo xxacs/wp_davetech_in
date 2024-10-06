@@ -5,7 +5,7 @@ services:
     ports:
       - 5010:80
     volumes:
-      - conf.ini:/usr/local/etc/php/conf.d/conf.ini
+      - ./config/wp_php.ini:/usr/local/etc/php/conf.d/conf.ini
       - html:/var/www/html # Full wordpress project
     environment:
       WORDPRESS_DB_HOST: wp-db:3306
@@ -61,7 +61,6 @@ services:
     depends_on:
       - wp-db
 volumes:
-  conf.ini:
   html:
   mysql_data:
   pma_php.ini:
