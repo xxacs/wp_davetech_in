@@ -60,3 +60,10 @@ services:
       CONTAINER_ENABLE_MONITORING: "false"
     depends_on:
       - wp-db
+volumes:
+  davetech_in_conf.ini:
+  davetech_in_html:
+  davetech_in_mysql_data:
+  davetech_in_pma_php.ini:
+  davetech_in_pma_config.php:
+  davetech_in_backups:
