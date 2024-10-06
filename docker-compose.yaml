@@ -41,7 +41,7 @@ services:
     depends_on:
       - wp-db
   wp-db-backup:
-    container_name: wp-db-backup
+#    container_name: wp-db-backup
     image: tiredofit/db-backup
     volumes:
       - backups:/backup
